@@ -1,4 +1,5 @@
 import Image from "next/image";
+import FileUpload from "./component/FileUpload";
 
 export default function Home() {
   return (
@@ -95,6 +96,9 @@ export default function Home() {
           />
           Go to nextjs.org →
         </a>
+        
+        
+        
       </footer>
     </div>
   );
