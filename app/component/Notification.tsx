@@ -66,5 +66,7 @@ function getAlertClass(type: NotificationType): string {
              "useNotification must be used within a NotificationProvider"
         )
     }
+
     return context;
+ 
   }
