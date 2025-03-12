@@ -14,7 +14,9 @@ export default function Header() {
       await signOut();
       showNotification("Signed out successfully", "success");
     } catch {
+        
       showNotification("Failed to sign out", "error");
+
     }
   };
 
