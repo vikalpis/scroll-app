@@ -14,9 +14,7 @@ export default function Header() {
       await signOut();
       showNotification("Signed out successfully", "success");
     } catch {
-        
       showNotification("Failed to sign out", "error");
-
     }
   };
 
@@ -74,7 +72,7 @@ export default function Header() {
                     <li>
                       <button
                         onClick={handleSignOut}
-                        className="px-4 py-2 text-error hover:bg-base-200 w-full text-left"
+                        className="px-4 bg-blue-400 py-2 text-error hover:bg-base-200 w-full text-left"
                       >
                         Sign Out
                       </button>
