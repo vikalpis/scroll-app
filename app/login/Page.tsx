@@ -19,10 +19,12 @@ export default function Login(){
             password,
             redirect : false,
         });
-
+            
+            
 
         if(result?.error){
             showNotification(result.error, "error");
+            // console.log(result);
         }else{
             showNotification("Login Successful", "success");
             router.push("/");
