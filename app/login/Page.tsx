@@ -26,7 +26,8 @@ export default function Login(){
             showNotification(result.error, "error");
             // console.log(result);
         }else{
-            showNotification("Login Successful", "success");
+            showNotification("Login Successful", "success");  
+            
             router.push("/");
         }
     };
