@@ -4,6 +4,7 @@ import { IKUpload } from "imagekitio-next";
 import { IKUploadResponse } from "imagekitio-next/dist/types/components/IKUpload/props";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface FileUploadProps {
   onSuccess: (res: IKUploadResponse) => void;
@@ -67,28 +68,58 @@ export default function FileUpload({
   };
 
   return (
-    <div className="space-y-2">
-      <IKUpload
-        fileName={fileType === "video" ? "video" : "image"}
-        onError={onError}
-        onSuccess={handleSuccess}
-        onUploadStart={handleStartUpload}
-        onUploadProgress={handleProgress}
-        accept={fileType === "video" ? "video/*" : "image/*"}
-        className="file-input file-input-bordered w-full"
-        validateFile={validateFile}
-        useUniqueFileName={true}
-        folder={fileType === "video" ? "/videos" : "/images"}
-      />
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="space-y-2"
+    >
+      <motion.div
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <IKUpload
+          fileName={fileType === "video" ? "video" : "image"}
+          onError={onError}
+          onSuccess={handleSuccess}
+          onUploadStart={handleStartUpload}
+          onUploadProgress={handleProgress}
+          accept={fileType === "video" ? "video/*" : "image/*"}
+          className="file-input file-input-bordered w-full"
+          validateFile={validateFile}
+          useUniqueFileName={true}
+          folder={fileType === "video" ? "/videos" : "/images"}
+        />
+      </motion.div>
 
-      {uploading && (
-        <div className="flex items-center gap-2 text-sm text-primary">
-          <Loader2 className="w-4 h-4 animate-spin" />
-          <span>Uploading...</span>
-        </div>
-      )}
+      <AnimatePresence>
+        {uploading && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="flex items-center gap-2 text-sm text-primary"
+          >
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+            >
+              <Loader2 className="w-4 h-4" />
+            </motion.div>
+            <span>Uploading...</span>
+          </motion.div>
+        )}
 
-      {error && <div className="text-error text-sm">{error}</div>}
-    </div>
+        {error && (
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="text-error text-sm"
+          >
+            {error}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }
