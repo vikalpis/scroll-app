@@ -73,10 +73,10 @@ interface VideoFormData {
     return (
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="form-control">
-          <label className="label">Title</label>
+          <label className="label p-2">Title</label>
           <input
             type="text"
-            className={`input input-bordered ${
+            className={`input input-bordered rounded-md ${
               errors.title ? "input-error" : ""
             }`}
             {...register("title", { required: "Title is required" })}
@@ -89,9 +89,9 @@ interface VideoFormData {
         </div>
   
         <div className="form-control">
-          <label className="label">Description</label>
+          <label className="label p-2">Description</label>
           <textarea
-            className={`textarea textarea-bordered h-24 ${
+            className={`textarea textarea-bordered rounded-md h-24 ${
               errors.description ? "textarea-error" : ""
             }`}
             {...register("description", { required: "Description is required" })}
